@@ -2,7 +2,7 @@
     "name": "balefireict/theme-kit",
     "description": "Balefire theme-kit — rendering-agnostic WordPress theme plumbing (config-injected).",
     "type": "library",
-    "license": "proprietary",
+    "license": "MIT",
     "require": {
         "php": ">=8.2"
     },
