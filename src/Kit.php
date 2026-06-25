@@ -18,11 +18,9 @@ if (!defined('ABSPATH')) exit;
  *       //   menu_locations, image_sizes, conditional_styles, ...
  *   ]);
  *
- * Slice 1 owns the rendering-agnostic, config-free plumbing:
- *   Partials · Pagination · Search · Cleanup · Comments · Sidebar · RelatedPosts
- *
- * Config-coupled modules (Assets, ThemeSupport, Menus, Options, Admin) move
- * over in later slices and will read values via self::config().
+ * Modules:
+ *   Config-free  — Partials · Pagination · Search · Cleanup · Comments · Sidebar · RelatedPosts
+ *   Config-coupled — Assets · ThemeSupport · Menus · Options · Admin (read via self::config()).
  */
 final class Kit
 {
@@ -34,17 +32,21 @@ final class Kit
     {
         self::$config = $config;
 
-        // Modules with real hooks.
+        // Config-free plumbing.
         Cleanup::init();
         Sidebar::init();
-
-        // No-op / on-demand modules (kept explicit so the boot list is the
-        // single source of truth for what the kit owns).
         Search::init();
         Comments::init();
         Partials::init();
         Pagination::init();
         RelatedPosts::init();
+
+        // Config-coupled modules (read self::$config).
+        Assets::init();
+        ThemeSupport::init();
+        Menus::init();
+        Options::init();
+        Admin::init();
     }
 
     /** Read a config value supplied at boot. */
