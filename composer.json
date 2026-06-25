@@ -1,0 +1,17 @@
+{
+    "name": "balefireict/theme-kit",
+    "description": "Balefire theme-kit — rendering-agnostic WordPress theme plumbing (config-injected).",
+    "type": "library",
+    "license": "proprietary",
+    "require": {
+        "php": ">=8.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Balefire\\": "src/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true
+    }
+}
