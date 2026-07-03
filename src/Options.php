@@ -7,8 +7,9 @@ if (!defined('ABSPATH')) exit;
 
 /**
  * ACF options-page accessor. The options page + its field group are
- * UI-created in ACF and synced via acf-json/ like any field group; this
- * class only reads values. Sites expose it through a helper (e.g. vmg_biz()).
+ * shipped via acf-json/ (e.g. group_acffg_general_business.json in the
+ * base theme); this class only reads values. Sites expose it through
+ * a helper (e.g. bma_biz()).
  */
 final class Options
 {
