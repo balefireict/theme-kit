@@ -69,8 +69,17 @@ final class Admin
             return;
         }
 
+        // Button colors come from the theme. Primary (Edit Post) reads
+        // --color-primary, then the block-theme preset. Secondary (WPBakery)
+        // reads --color-secondary, then --color-accent, then the preset.
+        // Hovers use the theme's -hover variable when set, else darken the
+        // base. Neutral greys when the theme defines none of these.
         echo '<style>
 .edit-footer {
+    --tk-edit-primary: var(--color-primary, var(--wp--preset--color--primary, #1f2937));
+    --tk-edit-primary-hover: var(--color-primary-hover, color-mix(in srgb, var(--tk-edit-primary) 80%, #000));
+    --tk-edit-secondary: var(--color-secondary, var(--color-accent, var(--wp--preset--color--secondary, #4b5563)));
+    --tk-edit-secondary-hover: var(--color-secondary-hover, color-mix(in srgb, var(--tk-edit-secondary) 80%, #000));
     width: 100%;
     background-color: #c4c4c4;
     display: flex;
@@ -98,7 +107,7 @@ a.vc_inline-link {
     display: inline-flex;
     padding: 0.75rem 1.5rem;
     color: #ffffff;
-    background-color: var(--color-primary, #00338f);
+    background-color: var(--tk-edit-primary);
     border: 2px solid transparent;
     border-radius: 4px;
     cursor: pointer;
@@ -111,20 +120,19 @@ a.vc_inline-link {
     transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease-in-out;
     position: relative;
 }
-a.edit-post-link {
-    background-color: var(--color-primary, #00338f);
-}
 a.edit-post-link:hover,
-.edit-footer a:hover,
-a.vc_inline-link:hover {
-    background-color: var(--color-primary-hover, #00186c);
+.edit-footer a:hover {
+    background-color: var(--tk-edit-primary-hover);
     color: #ffffff;
     text-decoration: none;
     opacity: 0.95;
     transform: translateY(1px);
 }
 a.vc_inline-link {
-    background-color: var(--color-accent, #c8102e);
+    background-color: var(--tk-edit-secondary);
+}
+a.vc_inline-link:hover {
+    background-color: var(--tk-edit-secondary-hover);
 }
 </style>';
 
